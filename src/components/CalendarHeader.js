@@ -6,10 +6,13 @@ import dayjs from 'dayjs'
 export default function CalendarHeader() {
   const {monthIndex, setMonthIndex} = useContext(GlobalContext)
   function handlePrevMonth() {
-    setMonthIndex(monthIndex - 1)
+    setMonthIndex(monthIndex - 1);
   }
   function handleNextMonth() {
-    setMonthIndex(monthIndex + 1)
+    setMonthIndex(monthIndex + 1);
+  }
+  function resetMonth() {
+    setMonthIndex(dayjs().month);
   }
   return (
     <header className='px-4 py-2 flex items center'>
@@ -17,7 +20,7 @@ export default function CalendarHeader() {
       <h1 className='mr-10 mt-2 text-xl text-gray-600 font-bold'>
         Calendar
       </h1>
-      <button className='border rounded h-8 mt-2 py-1 px-4 mr-5 text-sm'>
+      <button onClick={resetMonth} className='border rounded h-8 mt-2 py-1 px-4 mr-5 text-sm'>
         Today
       </button>
       <button onClick={handlePrevMonth}>
