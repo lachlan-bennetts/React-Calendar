@@ -4,7 +4,7 @@ import GlobalContext from '../context/GlobalContext'
 import dayjs from 'dayjs'
 
 export default function CalendarHeader() {
-  const {monthIndex, setMonthIndex} = useContext(GlobalContext)
+  const {monthIndex, setMonthIndex} = useContext(GlobalContext);
   function handlePrevMonth() {
     setMonthIndex(monthIndex - 1);
   }
@@ -12,7 +12,11 @@ export default function CalendarHeader() {
     setMonthIndex(monthIndex + 1);
   }
   function resetMonth() {
-    setMonthIndex(dayjs().month);
+    setMonthIndex(
+      monthIndex === dayjs().month()
+      ? monthIndex + Math.random()
+      : dayjs().month()
+    );
   }
   return (
     <header className='px-4 py-2 flex items center'>
@@ -24,12 +28,12 @@ export default function CalendarHeader() {
         Today
       </button>
       <button onClick={handlePrevMonth}>
-        <span className="material-symbols-outlined text-gray-600 mx-2">
+        <span className="material-symbols-outlined cursor-pointer text-gray-600 mx-2">
           chevron_left
         </span>
       </button>
       <button onClick={handleNextMonth}>
-        <span className="material-symbols-outlined text-gray-600 mx-2">
+        <span className="material-symbols-outlined cursor-pointer text-gray-600 mx-2">
           chevron_right
         </span>
       </button>

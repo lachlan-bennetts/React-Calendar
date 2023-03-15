@@ -7,7 +7,7 @@ import Month from './components/Month';
 import GlobalContext from './context/GlobalContext';
 
 function App() {
-  // console.table(getMonth())
+
   const [currentMonth, setCurrentMonth] = useState(getMonth())
   const { monthIndex } = useContext(GlobalContext)
 
