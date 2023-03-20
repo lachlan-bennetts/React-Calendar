@@ -1,5 +1,23 @@
+const labelsColours = [
+  "indigo",
+  "gray",
+  "green",
+  "blue",
+  "red",
+  "purple",
+];
+
 module.exports = {
-  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
+  purge: {
+    content: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
+    //Because we made a dynamic class with the label we need to add those clases
+    // to the safe list so the purge does not remove that
+    safelist: [
+      ...labelsColours.map((lbl) => `bg-${lbl}-500`),
+      ...labelsColours.map((lbl) => `bg-${lbl}-200`),
+      ...labelsColours.map((lbl) => `text-${lbl}-400`)
+    ],
+  },
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
@@ -14,5 +32,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [require("@tailwindcss/forms")],
 }
