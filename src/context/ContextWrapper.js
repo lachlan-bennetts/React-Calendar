@@ -28,11 +28,12 @@ export default function ContextWrapper(props) {
   const [miniCalendarMonth, setMiniCalendarMonth] = useState(null);
   const [dayChosen, setDayChosen] = useState(dayjs());
   const [showEventModal, setShowEventModal] = useState(false);
-  const [savedEvents, dispatchCalledEvent] = useReducer(savedEventsReducer, [], initEvents)
+  const [selectedEvent, setSelectedEvent] = useState(null)
+  const [savedEvents, dispatchCalledEvent] = useReducer(savedEventsReducer, [], initEvents);
 
   useEffect(() => {
     localStorage.setItem('savedEvents,', JSON.stringify(savedEvents));
-  }, [savedEvents])
+  }, [savedEvents]);
 
   useEffect(() => {
     if(miniCalendarMonth !== null) {
@@ -49,7 +50,10 @@ export default function ContextWrapper(props) {
     setDayChosen,
     showEventModal,
     setShowEventModal,
-    dispatchCalledEvent
+    savedEvents,
+    dispatchCalledEvent,
+    selectedEvent,
+    setSelectedEvent
     }}>
       {props.children}
     </GlobalContext.Provider>
