@@ -5,7 +5,7 @@ import GlobalContext from '../context/GlobalContext';
 export default function Day({day}) {
   const [ dayEvents, setDayEvents ] = useState([])
 
-  const { setDayChosen, setShowEventModal, savedEvents } = useContext(GlobalContext)
+  const { setDayChosen, setShowEventModal, savedEvents, setSelectedEvent } = useContext(GlobalContext)
 
   useEffect(() => {
     const events = savedEvents.filter(
@@ -40,6 +40,7 @@ export default function Day({day}) {
         {dayEvents.map((evt, idx) => (
           <div
           key={idx}
+          onClick={() => setSelectedEvent(evt)}
           className={`bg-${evt.label}-200 p-1 mr-3 text-gray-600 text-sm rounded mb-1 truncate`}>
             {evt.title}
           </div>

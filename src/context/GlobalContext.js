@@ -10,7 +10,9 @@ const GlobalContext = React.createContext({
   showEventModal: false,
   setShowEventModal: () => {},
   dispatchCalledEvent: () => {},
-  savedEvents: []
+  savedEvents: [],
+  selectedEvent: null,
+  setSelectedEvent: () => {}
 });
 
 export default GlobalContext
